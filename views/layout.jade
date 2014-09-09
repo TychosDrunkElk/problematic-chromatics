@@ -1,0 +1,36 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width')
+    title= title
+    script(src="/js/lib/create-stylesheet.unwrapped.js")
+    script(src="/js/lib/basket.full.min.js")
+
+    script.
+      basket.require({ url: 'css/application.css', execute: false, key: 'styles' }).then(function(responses){
+        var css = responses[0];
+        _stylesheet.appendStyleSheet(css, function() {});
+      });
+
+      basket.require({ url: 'js/utils/colors.json',  execute: false, key: 'colors' }).then(function() {
+        basket.require({ url: 'js/lib/jquery.min.js'}).then(function(){
+          basket.require({ url: 'js/lib/highstock.js'}).then(function(){
+            basket.require({ url: 'js/lib/exporting.js'}).then(function(){
+              basket.require( { url: 'js/utils/colorblind.js'}).then(function(){
+                basket.require({ url: 'js/main.js'}).then(function(){
+                  basket.require( { url: 'js/application.js', key: 'appjs'});    
+                });  
+              });
+            });
+          });
+        });
+      });
+
+
+  body
+    block content
+
+    a(href="#" id="color-blind-toggle") Color Blind Mode
+
+      

@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 1280px;
+  margin: 0 auto; }
+
+a {
+  color: #00B7FF; }
+
+img {
+  float: right;
+  width: 300px; }
+
+.market-card {
+  color: white;
+  width: 18%;
+  padding: 10px;
+  overflow: hidden;
+  float: left;
+  margin: .2%; }
+  .market-card.up {
+    background-color: #3366cc; }
+  .market-card.down {
+    background-color: #ffec00; }
+  .market-card.none {
+    background-color: #333; }
+  .market-card .company {
+    font-size: 2em;
+    margin: 0; }
+  .market-card .percent-change {
+    font-size: 2em; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }

@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width')
+    title= title
+    link(rel='stylesheet', href='/css/application.css', type="text/css")
+
+    script(src="/js/lib/create-stylesheet.unwrapped.js")
+    script(src="/js/lib/basket.full.min.js")
+
+
+    script(src="/js/lib/jquery.min.js")
+    script(src="/js/lib/highstock.js")
+    script(src="/js/lib/exporting.js")
+    script(src="/js/utils/colorblind.js")
+    script(src="/js/main-no-basket.js")
+    script(src="/js/application.js")
+
+  body
+    block content
+
+    a(href="#" id="color-blind-toggle") Color Blind Mode
+
+      

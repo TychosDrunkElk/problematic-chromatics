@@ -1,0 +1,6 @@
+@import '../public/js/utils/colors-deuteranopia.json';
+
+$green: map-get($colors, green);
+$red: map-get($colors, red);
+
+@import 'application';

@@ -1,0 +1,72 @@
+extends layout
+
+block content
+  h1= title
+
+  #container
+    video#videoElement(autoplay='autoplay')
+  canvas#canvas(width='900', height='700')
+
+  script.
+    var video = document.querySelector("#videoElement");
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+     
+    if (navigator.getUserMedia) {       
+        navigator.getUserMedia({video: true}, handleVideo, function(){});
+    }
+    function handleVideo(stream) {
+        // if found attach feed to video element
+        video.src = window.URL.createObjectURL(stream);
+    }
+    var analyser = null;
+
+    var v,canvas,context,w,h,audioContext;
+
+    document.addEventListener('DOMContentLoaded', function(){
+        // when DOM loaded, get canvas 2D context and store width and height of element
+        v = document.getElementById('videoElement');
+        canvas = document.getElementById('canvas');
+        context = canvas.getContext('2d');
+        w = canvas.width;
+        h = canvas.height;
+
+        v.addEventListener('play', function(){
+            draw(this,context,w,h);
+        },false);
+
+    },false);
+
+    function draw(v,c,w,h) {
+        if(v.paused || v.ended) return false; // if no video, exit here
+        context.drawImage(v,0,0,w,h); // draw video feed to canvas
+
+        
+        var pixels = context.getImageData(0,0,w,h);
+        var filtered = filter(pixels);
+        context.putImageData(filtered, 0, 0)
+        setTimeout(draw,20,v,c,w,h);       
+    } 
+    var filter = function(pixels) {
+      var d = pixels.data;
+      for(var i=0;i<d.length; i+=4) {
+          var r = d[i];
+          var g = d[i+1];
+          var b = d[i+2];
+          // mostly red
+          if(r > g && r > b) {
+              var rg = (r + g)/2;
+              var r = rg;
+              var g = rg;
+          } else if(g > r && g > b) {
+              g = b;
+              b = g;
+          }
+          d[i] = r;
+          d[i+1] = g;
+          d[i+2] = b;
+      }
+      return pixels;
+    };
+
+

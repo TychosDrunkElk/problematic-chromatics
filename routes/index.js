@@ -10,6 +10,10 @@ router.get('/no-basket', function(req, res) {
   res.render('index-no-basket');
 });
 
+router.get('/video', function(req, res) {
+  res.render('dueteranopia-video');
+});
+
 router.get('/no-images', function(req, res) {
   res.render('index-no-images');
 });

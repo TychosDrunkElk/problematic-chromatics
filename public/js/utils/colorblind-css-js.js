@@ -13,7 +13,7 @@ var setupToggle = function() {
       basket.remove('appjs');
       
       basket.require({ url: 'js/utils/colors' + type + '.json',  execute: false, key: 'colors' }).then(function(){
-        basket.require({ url: 'js/application.js', key: 'appjs'})
+        init();
       });
       basket.require({ url: 'css/application' + type + '.css', execute: false, key: 'styles'}).then(function(responses){
         var css = responses[0];

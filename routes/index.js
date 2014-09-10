@@ -8,14 +8,18 @@ router.get('/', function(req, res) {
 
 router.get('/no-basket', function(req, res) {
   res.render('index-no-basket');
-})
+});
+
+router.get('/no-images', function(req, res) {
+  res.render('index-no-images');
+});
 
 router.get('/js-basket', function(req, res) {
   res.render('index-js-basket');
-})
+});
 
 router.get('/css-basket', function(req, res) {
   res.render('index-css-basket');
-})
+});
 
 module.exports = router;
